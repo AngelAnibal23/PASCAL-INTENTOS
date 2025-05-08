@@ -1,0 +1,31 @@
+program Intento2;
+
+var turno: integer; 
+
+process p1; 
+	begin 
+		repeat 
+			while turno = 2 do; 
+			writeln('Proceso 1 en su seccion critica'); 
+			turno := 2;
+		forever
+	end; 
+	
+process p2; 
+	begin 
+		repeat 
+			while turno = 1 do; 
+			writeln('Proceso 2 en su Seccion Critica'); 
+			turno:= 1; 
+		forever
+	end; 
+	
+	
+begin 
+	cobegin 
+		p1; 
+		p2; 
+	coend 
+end.  
+
+

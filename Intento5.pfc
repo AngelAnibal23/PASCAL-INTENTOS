@@ -1,0 +1,42 @@
+program Intento5;
+
+var 
+	s1, s2: integer; 
+
+process p1; 
+begin 	
+	repeat 
+		s1:= 1; 
+		while s2=1 do
+			begin 
+				s1:= 0; 
+				s1:= 1; 
+			end; 
+		writeln('***Seccion critica P1***'); 
+		s1:= 0; 
+		forever
+	end; 
+	
+process p2; 
+begin 
+	repeat 
+		s2:= 1; 
+		while s1 = 1 do 
+			begin 
+				s2:= 0; 
+				s2:= 1; 
+			end; 
+		writeln('...Seccion critica P2...'); 
+		s2:= 0; 
+	 forever
+end; 
+
+begin
+s1:=0;
+s2:=0;
+	cobegin 
+		p1; 
+		p2; 
+	coend; 
+end.
+
